@@ -1,0 +1,6 @@
+{
+  "name": "Income111 - ระบบจัดการรายรับรายจ่าย",
+  "description": "ระบบจัดการรายรับรายจ่าย พร้อมสรุปผลรายเดือนและกราฟวิเคราะห์ข้อมูล บันทึกข้อมูลผ่าน Firebase",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

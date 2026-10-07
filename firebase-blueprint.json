@@ -1,0 +1,112 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "An income or expense transaction record",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User ID of the transaction owner",
+          "maxLength": 128
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of transaction: income or expense",
+          "enum": ["income", "expense"]
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount in currency"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category name of the transaction",
+          "maxLength": 100
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or description of the transaction",
+          "maxLength": 200
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of transaction formatted as YYYY-MM-DD",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment method used",
+          "maxLength": 50
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional additional notes",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when transaction was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when transaction was last updated"
+        }
+      },
+      "required": ["userId", "type", "amount", "category", "title", "date", "createdAt", "updatedAt"]
+    },
+    "Budget": {
+      "title": "Budget",
+      "description": "Monthly budget target for a category",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User ID of the budget owner",
+          "maxLength": 128
+        },
+        "month": {
+          "type": "string",
+          "description": "Target month formatted as YYYY-MM",
+          "pattern": "^[0-9]{4}-[0-9]{2}$"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category name or All",
+          "maxLength": 100
+        },
+        "amount": {
+          "type": "number",
+          "description": "Budget limit amount"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when budget was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when budget was last updated"
+        }
+      },
+      "required": ["userId", "month", "category", "amount", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/transactions/{transactionId}": {
+      "schema": {
+        "$ref": "#/entities/Transaction"
+      },
+      "description": "Collection of income and expense transactions"
+    },
+    "/budgets/{budgetId}": {
+      "schema": {
+        "$ref": "#/entities/Budget"
+      },
+      "description": "Collection of monthly budget targets"
+    }
+  }
+}
